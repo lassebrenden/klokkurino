@@ -1,3 +1,14 @@
+/*
+
+@todo
+
+> 00:04:00
+> Alarm has been set: 00:02:00
+> servoTime: 54464.00
+> servoDelay: 302.58
+
+*/
+
 /**
 * Include libraries
 */
@@ -864,9 +875,9 @@ void setClockAlarm() {
 			}
 		} else {
 			if(alarmMinutes % 2 == 0) {
-				alarmMinutes /= 2;
+				alarmMinutes = (alarmMinutes / 2);
 			} else {
-				alarmMinutes /= 2;
+				alarmMinutes = (alarmMinutes / 2);
 				alarmSeconds = 30;
 			}
 		}
