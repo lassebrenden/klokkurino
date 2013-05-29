@@ -73,9 +73,9 @@ Servo servo;
 // The alarm variables
 unsigned int alarm;
 unsigned int alarmHours = 0;
-unsigned int alarmInSeconds = 0;
 unsigned int alarmMinutes = 0;
 unsigned int alarmSeconds = 0;
+unsigned long alarmInSeconds = 0;
 
 // The button states
 unsigned int buttonBlueState = LOW;
@@ -315,10 +315,10 @@ void initiateServo() {
 	int servoAngle = 180;
 
 	// The number of milliseconds the servo should use to turn 180 degrees
-	float servoTime = (float) (alarmInSeconds * 1000);
+	long servoTime = alarmInSeconds * 1000;
 
 	// The number of milliseconds the servo should use to turn 1 degree
-	float servoDelay = servoTime / 180.0;
+	float servoDelay = (float) servoTime / servoAngle;
 
 	// Print debug information
 	Serial.print("> servoTime: ");
