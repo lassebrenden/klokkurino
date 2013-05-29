@@ -1,14 +1,3 @@
-/*
-
-@todo
-
-> 00:04:00
-> Alarm has been set: 00:02:00
-> servoTime: 54464.00
-> servoDelay: 302.58
-
-*/
-
 /**
 * Include libraries
 */
