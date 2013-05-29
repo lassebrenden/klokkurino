@@ -25,7 +25,7 @@ const unsigned int PIN_BUTTON_GREEN = 8;
 const unsigned int PIN_BUTTON_RED = 9;
 const unsigned int PIN_BUTTON_YELLOW = 10;
 
-// Set the LED pins
+// Set the LED pins (using analog pins as digital pins)
 const unsigned int PIN_LED_BLUE = 15;
 const unsigned int PIN_LED_GREEN = 16;
 const unsigned int PIN_LED_RED = 17;
@@ -583,9 +583,9 @@ void setClockTime() {
 		lcd.clear();
 
 		// Print instructions
-		lcd.print("PLEASE SET TIME");
+		lcd.print("SET TIME");
 
-		// Delay program
+		// Delay program enough to see message
 		timer.delay(1000);
 
 		// Print instructions
@@ -730,7 +730,7 @@ void setClockTime() {
 	lcd.setCursor(0, 1);
 	lcd.print("Time is set!");
 
-	// Delay program enough to see confirmation
+	// Delay program enough to see message
 	timer.delay(1000);
 }
 
@@ -754,9 +754,9 @@ void setClockAlarm() {
 			lcd.clear();
 
 			// Print instructions
-			lcd.print("PLEASE SET ALARM");
+			lcd.print("SET ALARM");
 
-			// Delay program
+			// Delay program enough to see message
 			timer.delay(1000);
 
 			// Print instructions
@@ -891,7 +891,81 @@ void setClockAlarm() {
 		Serial.print("> Alarm has been set: ");
 		printTimeToConsole(alarmHours, alarmMinutes, alarmSeconds);
 
-		// Delay program enough to see confirmation
+		// Delay program enough to see message
+		timer.delay(1000);
+
+		// Set numberOfSequences
+		setNumberOfSequences();
+	}
+}
+
+/**
+* Ask user to set the number of sequences to display during the game operation
+*/
+void setNumberOfSequences() {
+	if(isAlarmSet && isAlarmEnabled) {
+		// Create timer
+		Timer timer;
+
+		// Clear display
+		lcd.clear();
+
+		// Print instructions
+		lcd.print("SET LEVEL");
+
+		// Delay program enough to see message
+		timer.delay(1000);
+
+		// Print instructions
+		lcd.clear();
+		printDigitsToLCD(numberOfSequences);
+		lcd.setCursor(0, 1);
+		lcd.print("Set level");
+		lcd.setCursor(0, 0);
+
+		// Listen for user input
+		while(true) {
+			// Update button states
+			updateButtonStates();
+
+			// Set numberOfSequences
+			if(buttonBlueState && buttonBlueChangedState) {
+				break;
+			}
+
+			// Set numberOfSequences up
+			if(buttonGreenState && buttonGreenChangedState) {
+				if(numberOfSequences < 10) {
+					numberOfSequences++;
+				}
+			}
+
+			// Set numberOfSequences down
+			if(buttonRedState && buttonRedChangedState) {
+				if(numberOfSequences > 1) {
+					numberOfSequences--;
+				}
+			}
+
+			// Reset numberOfSequences
+			if(buttonYellowState && buttonYellowChangedState) {
+				numberOfSequences = 1;
+			}
+
+			// Set cursor
+			lcd.setCursor(0, 0);
+
+			// Print numberOfSequences
+			printDigitsToLCD(numberOfSequences);
+		}
+
+		// Print confirmation
+		lcd.setCursor(0, 1);
+		lcd.print("                ");
+		lcd.setCursor(0, 1);
+		lcd.print("Level is set!");
+
+		// Delay program enough to see message
 		timer.delay(1000);
 	}
 }
