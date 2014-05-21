@@ -24,7 +24,7 @@ const unsigned int PIN_LED_GREEN = 16;
 const unsigned int PIN_LED_RED = 17;
 const unsigned int PIN_LED_YELLOW = 18;
 
-// Set random noise pin (must be analog and unused) 
+// Set random noise pin (must be analog and unused)
 const unsigned int PIN_RANDOM = 0;
 
 /**
@@ -55,81 +55,81 @@ unsigned int buttonYellowState = LOW;
 * Blink LED
 */
 void blink(int pin, int timeToDelay) {
-	// Record current time
-	unsigned long timer = millis();
+  // Record current time
+  unsigned long timer = millis();
 
-	// Turn LED on
-	digitalWrite(pin, HIGH);
+  // Turn LED on
+  digitalWrite(pin, HIGH);
 
-	// Delay program to blink LED
-	while(true) {
-		if((millis() - timer) >= timeToDelay) {
-			// Turn LED off
-			digitalWrite(pin, LOW);
-		}
+  // Delay program to blink LED
+  while(true) {
+    if((millis() - timer) >= timeToDelay) {
+      // Turn LED off
+      digitalWrite(pin, LOW);
+    }
 
-		if((millis() - timer) >= (timeToDelay * 2)) {
-			break;
-		}
-	}
+    if((millis() - timer) >= (timeToDelay * 2)) {
+      break;
+    }
+  }
 }
 
 /**
 * Blink all LED
 */
 void blinkAll(int timeToDelay) {
-	// Record current time
-	unsigned long timer = millis();
+  // Record current time
+  unsigned long timer = millis();
 
-	// Turn LED on
-	digitalWrite(PIN_BUTTON_BLUE, HIGH);
-	digitalWrite(PIN_BUTTON_GREEN, HIGH);
-	digitalWrite(PIN_BUTTON_RED, HIGH);
-	digitalWrite(PIN_BUTTON_YELLOW, HIGH);
+  // Turn LED on
+  digitalWrite(PIN_BUTTON_BLUE, HIGH);
+  digitalWrite(PIN_BUTTON_GREEN, HIGH);
+  digitalWrite(PIN_BUTTON_RED, HIGH);
+  digitalWrite(PIN_BUTTON_YELLOW, HIGH);
 
-	// Delay program to blink LED
-	while(true) {
-		if((millis() - timer) >= timeToDelay) {
-			// Turn LED off
-			digitalWrite(PIN_BUTTON_BLUE, LOW);
-			digitalWrite(PIN_BUTTON_GREEN, LOW);
-			digitalWrite(PIN_BUTTON_RED, LOW);
-			digitalWrite(PIN_BUTTON_YELLOW, LOW);
-		}
+  // Delay program to blink LED
+  while(true) {
+    if((millis() - timer) >= timeToDelay) {
+      // Turn LED off
+      digitalWrite(PIN_BUTTON_BLUE, LOW);
+      digitalWrite(PIN_BUTTON_GREEN, LOW);
+      digitalWrite(PIN_BUTTON_RED, LOW);
+      digitalWrite(PIN_BUTTON_YELLOW, LOW);
+    }
 
-		if((millis() - timer) >= (timeToDelay * 2)) {
-			break;
-		}
-	}
+    if((millis() - timer) >= (timeToDelay * 2)) {
+      break;
+    }
+  }
 }
 
 /**
 * Setup program
 */
 void setup() {
-	// Set pin modes
-	pinMode(PIN_BUTTON_BLUE, INPUT);
-	pinMode(PIN_BUTTON_GREEN, INPUT);
-	pinMode(PIN_BUTTON_RED, INPUT);
-	pinMode(PIN_BUTTON_YELLOW, INPUT);
-	pinMode(PIN_LED_BLUE, OUTPUT);
-	pinMode(PIN_LED_GREEN, OUTPUT);
-	pinMode(PIN_LED_RED, OUTPUT);
-	pinMode(PIN_LED_YELLOW, OUTPUT);
+  // Set pin modes
+  pinMode(PIN_BUTTON_BLUE, INPUT);
+  pinMode(PIN_BUTTON_GREEN, INPUT);
+  pinMode(PIN_BUTTON_RED, INPUT);
+  pinMode(PIN_BUTTON_YELLOW, INPUT);
+  pinMode(PIN_LED_BLUE, OUTPUT);
+  pinMode(PIN_LED_GREEN, OUTPUT);
+  pinMode(PIN_LED_RED, OUTPUT);
+  pinMode(PIN_LED_YELLOW, OUTPUT);
 
-	// Start serial output
-	Serial.begin(9600);
+  // Start serial output
+  Serial.begin(9600);
 }
 
 /**
 * Run program
 */
 void loop() {
-	// Run program
-	if(!done) {
-	
+  // Run program
+  if(!done) {
 
-		// Set boolean to true
-		done = true;
-	}
+
+    // Set boolean to true
+    done = true;
+  }
 }

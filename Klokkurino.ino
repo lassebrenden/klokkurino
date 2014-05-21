@@ -95,942 +95,942 @@ unsigned int timeSeconds = 0;
 * Find out if the user has pressed any of the buttons
 */
 void updateButtonStates() {
-	// Update button bouncers
-	buttonBlueChangedState = buttonBlueBouncer.update();
-	buttonGreenChangedState = buttonGreenBouncer.update();
-	buttonRedChangedState = buttonRedBouncer.update();
-	buttonYellowChangedState = buttonYellowBouncer.update();
+  // Update button bouncers
+  buttonBlueChangedState = buttonBlueBouncer.update();
+  buttonGreenChangedState = buttonGreenBouncer.update();
+  buttonRedChangedState = buttonRedBouncer.update();
+  buttonYellowChangedState = buttonYellowBouncer.update();
 
-	// Read button bouncers
-	buttonBlueState = buttonBlueBouncer.read();
-	buttonGreenState = buttonGreenBouncer.read();
-	buttonRedState = buttonRedBouncer.read();
-	buttonYellowState = buttonYellowBouncer.read();
+  // Read button bouncers
+  buttonBlueState = buttonBlueBouncer.read();
+  buttonGreenState = buttonGreenBouncer.read();
+  buttonRedState = buttonRedBouncer.read();
+  buttonYellowState = buttonYellowBouncer.read();
 }
 
 /**
 * Blink single LED
 */
 void blink(int pinToBlink, int timeToDelay) {
-	// Create timer
-	Timer timer;
+  // Create timer
+  Timer timer;
 
-	// Turn LED on
-	digitalWrite(pinToBlink, HIGH);
+  // Turn LED on
+  digitalWrite(pinToBlink, HIGH);
 
-	// Turn LED off after timeToDelay milliseconds
-	while(true) {
-		// Turn LED off
-		if(timer.check(timeToDelay)) {
-			digitalWrite(pinToBlink, LOW);
-		}
+  // Turn LED off after timeToDelay milliseconds
+  while(true) {
+    // Turn LED off
+    if(timer.check(timeToDelay)) {
+      digitalWrite(pinToBlink, LOW);
+    }
 
-		// Delay for effect and break loop
-		if(timer.check(timeToDelay * 2)) {
-			break;
-		}
-	}
+    // Delay for effect and break loop
+    if(timer.check(timeToDelay * 2)) {
+      break;
+    }
+  }
 }
 
 /**
 * Blink all LEDs
 */
 void blinkAll(int timeToDelay) {
-	// Create timer
-	Timer timer;
+  // Create timer
+  Timer timer;
 
-	// Turn LEDs on
-	digitalWrite(PIN_LED_BLUE, HIGH);
-	digitalWrite(PIN_LED_GREEN, HIGH);
-	digitalWrite(PIN_LED_RED, HIGH);
-	digitalWrite(PIN_LED_YELLOW, HIGH);
+  // Turn LEDs on
+  digitalWrite(PIN_LED_BLUE, HIGH);
+  digitalWrite(PIN_LED_GREEN, HIGH);
+  digitalWrite(PIN_LED_RED, HIGH);
+  digitalWrite(PIN_LED_YELLOW, HIGH);
 
-	// Turn LEDs off after timeToDelay milliseconds
-	while(true) {
-		// Turn LEDs off
-		if(timer.check(timeToDelay)) {
-			digitalWrite(PIN_LED_BLUE, LOW);
-			digitalWrite(PIN_LED_GREEN, LOW);
-			digitalWrite(PIN_LED_RED, LOW);
-			digitalWrite(PIN_LED_YELLOW, LOW);
-		}
+  // Turn LEDs off after timeToDelay milliseconds
+  while(true) {
+    // Turn LEDs off
+    if(timer.check(timeToDelay)) {
+      digitalWrite(PIN_LED_BLUE, LOW);
+      digitalWrite(PIN_LED_GREEN, LOW);
+      digitalWrite(PIN_LED_RED, LOW);
+      digitalWrite(PIN_LED_YELLOW, LOW);
+    }
 
-		// Delay for effect and break loop
-		if(timer.check(timeToDelay * 2)) {
-			break;
-		}
-	}
+    // Delay for effect and break loop
+    if(timer.check(timeToDelay * 2)) {
+      break;
+    }
+  }
 }
 
 /**
 * Print digits to LCD with leading zero
 */
 void printDigitsToLCD(int digit) {
-	// Print leading zero for 0–9
-	if(digit < 10) {
-		lcd.print("0");
-	}
-	
-	// Print digit
-	lcd.print(digit);
+  // Print leading zero for 0–9
+  if(digit < 10) {
+    lcd.print("0");
+  }
+  
+  // Print digit
+  lcd.print(digit);
 }
 
 /**
 * Print digits to console with leading zero
 */
 void printDigitsToConsole(int digit) {
-	// Print leading zero for 0–9
-	if(digit < 10) {
-		Serial.print("0");
-	}
-	
-	// Print digit
-	Serial.print(digit);
+  // Print leading zero for 0–9
+  if(digit < 10) {
+    Serial.print("0");
+  }
+  
+  // Print digit
+  Serial.print(digit);
 }
 
 /**
 * Prints the current time to LCD
 */
 void printCurrentTimeToLCD() {
-	// Print current time to console
-	printCurrentTimeToConsole();
+  // Print current time to console
+  printCurrentTimeToConsole();
 
-	// Print hour()
-	lcd.clear();
-	printDigitsToLCD(hour());
+  // Print hour()
+  lcd.clear();
+  printDigitsToLCD(hour());
 
-	// Print minute()
-	lcd.print(":");
-	printDigitsToLCD(minute());
+  // Print minute()
+  lcd.print(":");
+  printDigitsToLCD(minute());
 
-	// Print second()
-	lcd.print(":");
-	printDigitsToLCD(second());
+  // Print second()
+  lcd.print(":");
+  printDigitsToLCD(second());
 }
 
 /**
 * Prints the current time to console
 */
 void printCurrentTimeToConsole() {
-	// Print hour()
-	printDigitsToConsole(hour());
+  // Print hour()
+  printDigitsToConsole(hour());
 
-	// Print minute()
-	Serial.print(":");
-	printDigitsToConsole(minute());
+  // Print minute()
+  Serial.print(":");
+  printDigitsToConsole(minute());
 
-	// Print second()
-	Serial.print(":");
-	printDigitsToConsole(second());
+  // Print second()
+  Serial.print(":");
+  printDigitsToConsole(second());
 
-	// Print newline
-	Serial.println();
+  // Print newline
+  Serial.println();
 }
 
 /**
 * Prints any time to console
 */
 void printTimeToConsole(int hour, int minute, int second) {
-	// Print hour()
-	printDigitsToConsole(hour);
+  // Print hour()
+  printDigitsToConsole(hour);
 
-	// Print minute
-	Serial.print(":");
-	printDigitsToConsole(minute);
+  // Print minute
+  Serial.print(":");
+  printDigitsToConsole(minute);
 
-	// Print second
-	Serial.print(":");
-	printDigitsToConsole(second);
+  // Print second
+  Serial.print(":");
+  printDigitsToConsole(second);
 
-	// Print newline
-	Serial.println();
+  // Print newline
+  Serial.println();
 }
 
 /**
 * Print alarm status
 */
 void printAlarmStatus() {
-	// Set cursor to top right
-	lcd.setCursor(15, 0);
+  // Set cursor to top right
+  lcd.setCursor(15, 0);
 
-	// Print asterisk if alarm is set and enabled, otherwise nothing
-	if(isAlarmSet && isAlarmEnabled) {
-		lcd.print("*");
-	} else {
-		lcd.print(" ");
-	}
+  // Print asterisk if alarm is set and enabled, otherwise nothing
+  if(isAlarmSet && isAlarmEnabled) {
+    lcd.print("*");
+  } else {
+    lcd.print(" ");
+  }
 }
 
 /**
 * Listen for user actions during normal clock operation
 */
 void listenForUserActions() {
-	// Print alarm status
-	printAlarmStatus();
+  // Print alarm status
+  printAlarmStatus();
 
-	// Update button states
-	updateButtonStates();
+  // Update button states
+  updateButtonStates();
 
-	// Set alarm
-	if(!isAlarmEnabled && isTimeSet && buttonBlueState && buttonBlueChangedState) {
-		setClockAlarm();
-	}
+  // Set alarm
+  if(!isAlarmEnabled && isTimeSet && buttonBlueState && buttonBlueChangedState) {
+    setClockAlarm();
+  }
 
-	// Toggle alarm
-	if(isAlarmSet && buttonYellowState && buttonYellowChangedState) {
-		// Is the alarm enabled?
-		if(isAlarmEnabled) {
-			// Disable alarm
-			Alarm.disable(alarm);
+  // Toggle alarm
+  if(isAlarmSet && buttonYellowState && buttonYellowChangedState) {
+    // Is the alarm enabled?
+    if(isAlarmEnabled) {
+      // Disable alarm
+      Alarm.disable(alarm);
 
-			// Set isAlarmEnabled to false
-			isAlarmEnabled = false;
+      // Set isAlarmEnabled to false
+      isAlarmEnabled = false;
 
-			// Print alarm status
-			Serial.println("> Alarm has been disabled");
-		} else {
-			// Enable alarm
-			Alarm.enable(alarm);
+      // Print alarm status
+      Serial.println("> Alarm has been disabled");
+    } else {
+      // Enable alarm
+      Alarm.enable(alarm);
 
-			// Set isAlarmEnabled to true
-			isAlarmEnabled = true;
+      // Set isAlarmEnabled to true
+      isAlarmEnabled = true;
 
-			// Print alarm status
-			Serial.println("> Alarm has been enabled");
-		}
-	}
+      // Print alarm status
+      Serial.println("> Alarm has been enabled");
+    }
+  }
 }
 
 /**
 * Initiate servo operation
 */
 void initiateServo() {
-	// Timer for delaying clock operation
-	Timer timerClock;
+  // Timer for delaying clock operation
+  Timer timerClock;
 
-	// Timer for delaying servo operation
-	Timer timerServo;
+  // Timer for delaying servo operation
+  Timer timerServo;
 
-	// The angle of the servo
-	int servoAngle = 180;
+  // The angle of the servo
+  int servoAngle = 180;
 
-	// The number of milliseconds the servo should use to turn 180 degrees
-	long servoTime = alarmInSeconds * 1000;
+  // The number of milliseconds the servo should use to turn 180 degrees
+  long servoTime = alarmInSeconds * 1000;
 
-	// The number of milliseconds the servo should use to turn 1 degree
-	float servoDelay = (float) servoTime / servoAngle;
+  // The number of milliseconds the servo should use to turn 1 degree
+  float servoDelay = (float) servoTime / servoAngle;
 
-	// Print debug information
-	Serial.print("> servoTime: ");
-	Serial.println(servoTime);
-	Serial.print("> servoDelay: ");
-	Serial.println(servoDelay);
+  // Print debug information
+  Serial.print("> servoTime: ");
+  Serial.println(servoTime);
+  Serial.print("> servoDelay: ");
+  Serial.println(servoDelay);
 
-	// Print current time to LCD
-	printCurrentTimeToLCD();
+  // Print current time to LCD
+  printCurrentTimeToLCD();
 
-	// Begin servo operation
-	while(true) {
-		// Listen for user actions
-		listenForUserActions();
+  // Begin servo operation
+  while(true) {
+    // Listen for user actions
+    listenForUserActions();
 
-		// Print current time
-		if(timerClock.check(1000)) {
-			// Print current time to LCD
-			printCurrentTimeToLCD();
+    // Print current time
+    if(timerClock.check(1000)) {
+      // Print current time to LCD
+      printCurrentTimeToLCD();
 
-			// Reset timer
-			timerClock.set();
-		}
+      // Reset timer
+      timerClock.set();
+    }
 
-		// Turn servo
-		if(timerServo.check(servoDelay)) {
-			// Write angle to servo
-			servo.write(servoAngle);
+    // Turn servo
+    if(timerServo.check(servoDelay)) {
+      // Write angle to servo
+      servo.write(servoAngle);
 
-			// Decrement servoAngle
-			servoAngle--;
+      // Decrement servoAngle
+      servoAngle--;
 
-			// Print debug information
-			Serial.print("> servoAngle: ");
-			Serial.println(servoAngle);
+      // Print debug information
+      Serial.print("> servoAngle: ");
+      Serial.println(servoAngle);
 
-			// Reset timer
-			timerServo.set();
-		}
+      // Reset timer
+      timerServo.set();
+    }
 
-		// Break loop
-		if(servoAngle == 0) {
-			break;
-		}
-	}
+    // Break loop
+    if(servoAngle == 0) {
+      break;
+    }
+  }
 
-	// Initiate sound operation
-	initiateSound();
+  // Initiate sound operation
+  initiateSound();
 }
 
 /**
 * Initiate sound operation
 */
 void initiateSound() {
-	// Set MP3 shield to repeat mode
-	mp3.set_mode(MP3::REPEAT);
+  // Set MP3 shield to repeat mode
+  mp3.set_mode(MP3::REPEAT);
 
-	// Set volume to max
-	mp3.volume(0x1F);
+  // Set volume to max
+  mp3.volume(0x1F);
 
-	// Generate new random seed
-	randomSeed(analogRead(PIN_RANDOM));
+  // Generate new random seed
+  randomSeed(analogRead(PIN_RANDOM));
 
-	// Get random sound (from 1–5)
-	int sound = random(1, 6);
+  // Get random sound (from 1–5)
+  int sound = random(1, 6);
 
-	// Play sound
-	switch(sound) {
-		case 1:
-			mp3.play_spi_flash(0x0001);
-			break;
-		case 2:
-			mp3.play_spi_flash(0x0002);
-			break;
-		case 3:
-			mp3.play_spi_flash(0x0003);
-			break;
-		case 4:
-			mp3.play_spi_flash(0x0004);
-			break;
-		case 5:
-			mp3.play_spi_flash(0x0005);
-			break;
-	}
+  // Play sound
+  switch(sound) {
+    case 1:
+      mp3.play_spi_flash(0x0001);
+      break;
+    case 2:
+      mp3.play_spi_flash(0x0002);
+      break;
+    case 3:
+      mp3.play_spi_flash(0x0003);
+      break;
+    case 4:
+      mp3.play_spi_flash(0x0004);
+      break;
+    case 5:
+      mp3.play_spi_flash(0x0005);
+      break;
+  }
 
-	// Print debug information
-	Serial.print("> Playing sound: ");
-	Serial.println(sound);
+  // Print debug information
+  Serial.print("> Playing sound: ");
+  Serial.println(sound);
 
-	// Initiate game operation
-	initiateGame();
+  // Initiate game operation
+  initiateGame();
 }
 
 /**
 * Initiate game operation
 */
 void initiateGame() {
-	// Print alarm text to LCD
-	lcd.clear();
-	lcd.print("TIME TO");
-	lcd.setCursor(0, 1);
-	lcd.print("WAKE UP!");
+  // Print alarm text to LCD
+  lcd.clear();
+  lcd.print("TIME TO");
+  lcd.setCursor(0, 1);
+  lcd.print("WAKE UP!");
 
-	// Generate LED sequences
-	for(int sequence = 0; sequence < numberOfSequences; sequence++) {
-		// Whether or not the inputted sequence is correct
-		boolean sequenceIsCorrect = true;
+  // Generate LED sequences
+  for(int sequence = 0; sequence < numberOfSequences; sequence++) {
+    // Whether or not the inputted sequence is correct
+    boolean sequenceIsCorrect = true;
 
-		// The number of buttons pressed
-		int buttonsPressed = 0;
-		
-		// The sequence length
-		int sequenceLength = sequence + 1;
-		
-		// The array that holds the sequence answer
-		int sequenceArrayAnswer[sequenceLength];
-		
-		// The array that holds the user inputted sequence
-		int sequenceArrayInput[sequenceLength];
+    // The number of buttons pressed
+    int buttonsPressed = 0;
+    
+    // The sequence length
+    int sequenceLength = sequence + 1;
+    
+    // The array that holds the sequence answer
+    int sequenceArrayAnswer[sequenceLength];
+    
+    // The array that holds the user inputted sequence
+    int sequenceArrayInput[sequenceLength];
 
-		// Print debug information
-		Serial.print("> Sequence: ");
+    // Print debug information
+    Serial.print("> Sequence: ");
 
-		// Generate a LED sequence
-		for(int segment = 0; segment < sequenceLength; segment++) {
-			// Generate new random seed
-			randomSeed(analogRead(PIN_RANDOM));
+    // Generate a LED sequence
+    for(int segment = 0; segment < sequenceLength; segment++) {
+      // Generate new random seed
+      randomSeed(analogRead(PIN_RANDOM));
 
-			// Get random LED pin (pins must be sequential from 15 to 19)
-			sequenceArrayAnswer[segment] = random(15, 19);
+      // Get random LED pin (pins must be sequential from 15 to 19)
+      sequenceArrayAnswer[segment] = random(15, 19);
 
-			// Blink the corresponding LED
-			blink(sequenceArrayAnswer[segment], 500);
+      // Blink the corresponding LED
+      blink(sequenceArrayAnswer[segment], 500);
 
-			// Print debug information
-			Serial.print(sequenceArrayAnswer[segment]);
-			Serial.print(" ");
-		}
+      // Print debug information
+      Serial.print(sequenceArrayAnswer[segment]);
+      Serial.print(" ");
+    }
 
-		// Print newline to separate sequences
-		Serial.println();
+    // Print newline to separate sequences
+    Serial.println();
 
-		// Listen for user input
-		while(buttonsPressed < sequenceLength) {
-			// Update button states
-			updateButtonStates();
+    // Listen for user input
+    while(buttonsPressed < sequenceLength) {
+      // Update button states
+      updateButtonStates();
 
-			// Add blue sequence segment
-			if(buttonBlueState && buttonBlueChangedState) {
-				// Add segment to input
-				sequenceArrayInput[buttonsPressed] = PIN_LED_BLUE;
-				
-				// Count number of buttons pressed
-				buttonsPressed++;
+      // Add blue sequence segment
+      if(buttonBlueState && buttonBlueChangedState) {
+        // Add segment to input
+        sequenceArrayInput[buttonsPressed] = PIN_LED_BLUE;
+        
+        // Count number of buttons pressed
+        buttonsPressed++;
 
-				// Print button status
-				Serial.print("> Button: Blue (");
-				Serial.print(buttonsPressed);
-				Serial.println(");");
-			}
+        // Print button status
+        Serial.print("> Button: Blue (");
+        Serial.print(buttonsPressed);
+        Serial.println(");");
+      }
 
-			// Add red sequence segment
-			if(buttonRedState && buttonRedChangedState) {
-				// Add segment to input
-				sequenceArrayInput[buttonsPressed] = PIN_LED_RED;
-				
-				// Count number of buttons pressed
-				buttonsPressed++;
+      // Add red sequence segment
+      if(buttonRedState && buttonRedChangedState) {
+        // Add segment to input
+        sequenceArrayInput[buttonsPressed] = PIN_LED_RED;
+        
+        // Count number of buttons pressed
+        buttonsPressed++;
 
-				// Print button status
-				Serial.print("> Button: Red (");
-				Serial.print(buttonsPressed);
-				Serial.println(");");
-			}
+        // Print button status
+        Serial.print("> Button: Red (");
+        Serial.print(buttonsPressed);
+        Serial.println(");");
+      }
 
-			// Add green sequence segment
-			if(buttonGreenState && buttonGreenChangedState) {
-				// Add segment to input
-				sequenceArrayInput[buttonsPressed] = PIN_LED_GREEN;
-				
-				// Count number of buttons pressed
-				buttonsPressed++;
+      // Add green sequence segment
+      if(buttonGreenState && buttonGreenChangedState) {
+        // Add segment to input
+        sequenceArrayInput[buttonsPressed] = PIN_LED_GREEN;
+        
+        // Count number of buttons pressed
+        buttonsPressed++;
 
-				// Print button status
-				Serial.print("> Button: Green (");
-				Serial.print(buttonsPressed);
-				Serial.println(");");
-			}
+        // Print button status
+        Serial.print("> Button: Green (");
+        Serial.print(buttonsPressed);
+        Serial.println(");");
+      }
 
-			// Add yellow sequence segment
-			if(buttonYellowState && buttonYellowChangedState) {
-				// Add segment to input
-				sequenceArrayInput[buttonsPressed] = PIN_LED_YELLOW;
-				
-				// Count number of buttons pressed
-				buttonsPressed++;
+      // Add yellow sequence segment
+      if(buttonYellowState && buttonYellowChangedState) {
+        // Add segment to input
+        sequenceArrayInput[buttonsPressed] = PIN_LED_YELLOW;
+        
+        // Count number of buttons pressed
+        buttonsPressed++;
 
-				// Print button status
-				Serial.print("> Button: Yellow (");
-				Serial.print(buttonsPressed);
-				Serial.println(");");
-			}
-		}
+        // Print button status
+        Serial.print("> Button: Yellow (");
+        Serial.print(buttonsPressed);
+        Serial.println(");");
+      }
+    }
 
-		// Test if inputted sequence is correct
-		for(int i = 0; i < sequenceLength; i++) {
-			if(sequenceArrayInput[i] != sequenceArrayAnswer[i]) {
-				sequenceIsCorrect = false;
-				break;
-			}
-		}
+    // Test if inputted sequence is correct
+    for(int i = 0; i < sequenceLength; i++) {
+      if(sequenceArrayInput[i] != sequenceArrayAnswer[i]) {
+        sequenceIsCorrect = false;
+        break;
+      }
+    }
 
-		// Was the sequence correct?
-		if(sequenceIsCorrect) {
-			// Blink green LED
-			blink(PIN_LED_GREEN, 100);
-			blink(PIN_LED_GREEN, 100);
-			blink(PIN_LED_GREEN, 100);
+    // Was the sequence correct?
+    if(sequenceIsCorrect) {
+      // Blink green LED
+      blink(PIN_LED_GREEN, 100);
+      blink(PIN_LED_GREEN, 100);
+      blink(PIN_LED_GREEN, 100);
 
-			// Print sequence status				
-			Serial.println("> Sequence is correct");
-		} else {
-			// Force user to start over
-			sequence = -1;
+      // Print sequence status        
+      Serial.println("> Sequence is correct");
+    } else {
+      // Force user to start over
+      sequence = -1;
 
-			// Blink red LED
-			blink(PIN_LED_RED, 100);
-			blink(PIN_LED_RED, 100);
-			blink(PIN_LED_RED, 100);
+      // Blink red LED
+      blink(PIN_LED_RED, 100);
+      blink(PIN_LED_RED, 100);
+      blink(PIN_LED_RED, 100);
 
-			// Print sequence status
-			Serial.println("> Sequence is incorrect");
-		}
+      // Print sequence status
+      Serial.println("> Sequence is incorrect");
+    }
 
-		// Is this the last sequence?
-		if((sequence + 1) != numberOfSequences) {
-			// Print sequence separator
-			Serial.println("----------");
+    // Is this the last sequence?
+    if((sequence + 1) != numberOfSequences) {
+      // Print sequence separator
+      Serial.println("----------");
 
-			// Blink all LEDs to signal a new sequence
-			blinkAll(1000);
-		}
-	}
+      // Blink all LEDs to signal a new sequence
+      blinkAll(1000);
+    }
+  }
 
-	// Turn off sound
-	mp3.stop();
+  // Turn off sound
+  mp3.stop();
 
-	// Turn servo off
-	servo.write(180);
+  // Turn servo off
+  servo.write(180);
 }
 
 /**
 * Ask user to set the time
 */
 void setClockTime() {
-	// Create timer
-	Timer timer;
+  // Create timer
+  Timer timer;
 
-	// Set timeHours
-	if(!isTimeHoursSet) {
-		// Clear display
-		lcd.clear();
+  // Set timeHours
+  if(!isTimeHoursSet) {
+    // Clear display
+    lcd.clear();
 
-		// Print instructions
-		lcd.print("SET TIME");
+    // Print instructions
+    lcd.print("SET TIME");
 
-		// Delay program enough to see message
-		timer.delay(1000);
+    // Delay program enough to see message
+    timer.delay(1000);
 
-		// Print instructions
-		lcd.clear();
-		lcd.print("--:--:--");
-		lcd.setCursor(0, 1);
-		lcd.print("Set hours");
-		lcd.setCursor(0, 0);
+    // Print instructions
+    lcd.clear();
+    lcd.print("--:--:--");
+    lcd.setCursor(0, 1);
+    lcd.print("Set hours");
+    lcd.setCursor(0, 0);
 
-		// Listen for user input
-		while(!isTimeHoursSet) {
-			// Update button states
-			updateButtonStates();
+    // Listen for user input
+    while(!isTimeHoursSet) {
+      // Update button states
+      updateButtonStates();
 
-			// Set timeHours
-			if(buttonBlueState && buttonBlueChangedState) {
-				isTimeHoursSet = true;
-			}
+      // Set timeHours
+      if(buttonBlueState && buttonBlueChangedState) {
+        isTimeHoursSet = true;
+      }
 
-			// Set timeHours up
-			if(buttonGreenState && buttonGreenChangedState) {
-				if(timeHours < 23) {
-					timeHours++;
-				}
-			}
+      // Set timeHours up
+      if(buttonGreenState && buttonGreenChangedState) {
+        if(timeHours < 23) {
+          timeHours++;
+        }
+      }
 
-			// Set timeHours down
-			if(buttonRedState && buttonRedChangedState) {
-				if(timeHours > 0) {
-					timeHours--;
-				}
-			}
+      // Set timeHours down
+      if(buttonRedState && buttonRedChangedState) {
+        if(timeHours > 0) {
+          timeHours--;
+        }
+      }
 
-			// Reset timeHours
-			if(buttonYellowState && buttonYellowChangedState) {
-				timeHours = 0;
-			}
+      // Reset timeHours
+      if(buttonYellowState && buttonYellowChangedState) {
+        timeHours = 0;
+      }
 
-			// Set cursor
-			lcd.setCursor(0, 0);
+      // Set cursor
+      lcd.setCursor(0, 0);
 
-			// Print timeHours
-			printDigitsToLCD(timeHours);
-		}
-	}
+      // Print timeHours
+      printDigitsToLCD(timeHours);
+    }
+  }
 
-	// Set timeMinutes
-	if(!isTimeMinutesSet) {
-		// Print instructions
-		lcd.setCursor(0, 1);
-		lcd.print("Set minutes");
-		lcd.setCursor(3, 0);
+  // Set timeMinutes
+  if(!isTimeMinutesSet) {
+    // Print instructions
+    lcd.setCursor(0, 1);
+    lcd.print("Set minutes");
+    lcd.setCursor(3, 0);
 
-		// Listen for user input
-		while(!isTimeMinutesSet) {
-			// Update button states
-			updateButtonStates();
+    // Listen for user input
+    while(!isTimeMinutesSet) {
+      // Update button states
+      updateButtonStates();
 
-			// Set timeMinutes
-			if(buttonBlueState && buttonBlueChangedState) {
-				isTimeMinutesSet = true;
-			}
+      // Set timeMinutes
+      if(buttonBlueState && buttonBlueChangedState) {
+        isTimeMinutesSet = true;
+      }
 
-			// Set timeMinutes up
-			if(buttonGreenState && buttonGreenChangedState) {
-				if(timeMinutes < 59) {
-					timeMinutes++;
-				}
-			}
+      // Set timeMinutes up
+      if(buttonGreenState && buttonGreenChangedState) {
+        if(timeMinutes < 59) {
+          timeMinutes++;
+        }
+      }
 
-			// Set timeMinutes down
-			if(buttonRedState && buttonRedChangedState) {
-				if(timeMinutes > 0) {
-					timeMinutes--;
-				}
-			}
+      // Set timeMinutes down
+      if(buttonRedState && buttonRedChangedState) {
+        if(timeMinutes > 0) {
+          timeMinutes--;
+        }
+      }
 
-			// Reset timeMinutes
-			if(buttonYellowState && buttonYellowChangedState) {
-				timeMinutes = 0;
-			}
+      // Reset timeMinutes
+      if(buttonYellowState && buttonYellowChangedState) {
+        timeMinutes = 0;
+      }
 
-			// Set cursor
-			lcd.setCursor(3, 0);
+      // Set cursor
+      lcd.setCursor(3, 0);
 
-			// Print timeMinutes
-			printDigitsToLCD(timeMinutes);
-		}
-	}
+      // Print timeMinutes
+      printDigitsToLCD(timeMinutes);
+    }
+  }
 
-	// Set timeSeconds
-	if(!isTimeSecondsSet) {
-		// Print instructions
-		lcd.setCursor(0, 1);
-		lcd.print("Set seconds");
-		lcd.setCursor(3, 0);
+  // Set timeSeconds
+  if(!isTimeSecondsSet) {
+    // Print instructions
+    lcd.setCursor(0, 1);
+    lcd.print("Set seconds");
+    lcd.setCursor(3, 0);
 
-		// Listen for user input
-		while(!isTimeSecondsSet) {
-			// Update button states
-			updateButtonStates();
+    // Listen for user input
+    while(!isTimeSecondsSet) {
+      // Update button states
+      updateButtonStates();
 
-			// Set timeSeconds
-			if(buttonBlueState && buttonBlueChangedState) {
-				isTimeSecondsSet = true;
-			}
+      // Set timeSeconds
+      if(buttonBlueState && buttonBlueChangedState) {
+        isTimeSecondsSet = true;
+      }
 
-			// Set timeSeconds up
-			if(buttonGreenState && buttonGreenChangedState) {
-				if(timeSeconds < 59) {
-					timeSeconds++;
-				}
-			}
+      // Set timeSeconds up
+      if(buttonGreenState && buttonGreenChangedState) {
+        if(timeSeconds < 59) {
+          timeSeconds++;
+        }
+      }
 
-			// Set timeSeconds down
-			if(buttonRedState && buttonRedChangedState) {
-				if(timeSeconds > 0) {
-					timeSeconds--;
-				}
-			}
+      // Set timeSeconds down
+      if(buttonRedState && buttonRedChangedState) {
+        if(timeSeconds > 0) {
+          timeSeconds--;
+        }
+      }
 
-			// Reset timeSeconds
-			if(buttonYellowState && buttonYellowChangedState) {
-				timeSeconds = 0;
-			}
+      // Reset timeSeconds
+      if(buttonYellowState && buttonYellowChangedState) {
+        timeSeconds = 0;
+      }
 
-			// Set cursor
-			lcd.setCursor(6, 0);
+      // Set cursor
+      lcd.setCursor(6, 0);
 
-			// Print timeSeconds
-			printDigitsToLCD(timeSeconds);
-		}
-	}
+      // Print timeSeconds
+      printDigitsToLCD(timeSeconds);
+    }
+  }
 
-	// Set time
-	setTime(timeHours, timeMinutes, timeSeconds, 1, 1, 2013);
-	isTimeSet = true;
+  // Set time
+  setTime(timeHours, timeMinutes, timeSeconds, 1, 1, 2013);
+  isTimeSet = true;
 
-	// Print confirmation
-	lcd.setCursor(0, 1);
-	lcd.print("                ");
-	lcd.setCursor(0, 1);
-	lcd.print("Time is set!");
+  // Print confirmation
+  lcd.setCursor(0, 1);
+  lcd.print("                ");
+  lcd.setCursor(0, 1);
+  lcd.print("Time is set!");
 
-	// Delay program enough to see message
-	timer.delay(1000);
+  // Delay program enough to see message
+  timer.delay(1000);
 }
 
 /**
 * Ask user to set the alarm
 */
 void setClockAlarm() {
-	// Only allow alarm if time is set
-	if(isTimeSet) {
-		// Reset alarm booleans
-		isAlarmSet = false;
-		isAlarmHoursSet = false;
-		isAlarmMinutesSet = false;
+  // Only allow alarm if time is set
+  if(isTimeSet) {
+    // Reset alarm booleans
+    isAlarmSet = false;
+    isAlarmHoursSet = false;
+    isAlarmMinutesSet = false;
 
-		// Create timer
-		Timer timer;
+    // Create timer
+    Timer timer;
 
-		// Set timeHours
-		if(!isAlarmHoursSet) {
-			// Clear display
-			lcd.clear();
+    // Set timeHours
+    if(!isAlarmHoursSet) {
+      // Clear display
+      lcd.clear();
 
-			// Print instructions
-			lcd.print("SET ALARM");
+      // Print instructions
+      lcd.print("SET ALARM");
 
-			// Delay program enough to see message
-			timer.delay(1000);
+      // Delay program enough to see message
+      timer.delay(1000);
 
-			// Print instructions
-			lcd.clear();
-			lcd.print("--:--");
-			lcd.setCursor(0, 1);
-			lcd.print("Set hours");
-			lcd.setCursor(0, 0);
+      // Print instructions
+      lcd.clear();
+      lcd.print("--:--");
+      lcd.setCursor(0, 1);
+      lcd.print("Set hours");
+      lcd.setCursor(0, 0);
 
-			// Listen for user input
-			while(!isAlarmHoursSet) {
-				// Update button states
-				updateButtonStates();
+      // Listen for user input
+      while(!isAlarmHoursSet) {
+        // Update button states
+        updateButtonStates();
 
-				// Set alarmHours
-				if(buttonBlueState && buttonBlueChangedState) {
-					isAlarmHoursSet = true;
-				}
+        // Set alarmHours
+        if(buttonBlueState && buttonBlueChangedState) {
+          isAlarmHoursSet = true;
+        }
 
-				// Set alarmHours up
-				if(buttonGreenState && buttonGreenChangedState) {
-					if(alarmHours < 23) {
-						alarmHours++;
-					}
-				}
+        // Set alarmHours up
+        if(buttonGreenState && buttonGreenChangedState) {
+          if(alarmHours < 23) {
+            alarmHours++;
+          }
+        }
 
-				// Set alarmHours down
-				if(buttonRedState && buttonRedChangedState) {
-					if(alarmHours > 0) {
-						alarmHours--;
-					}
-				}
+        // Set alarmHours down
+        if(buttonRedState && buttonRedChangedState) {
+          if(alarmHours > 0) {
+            alarmHours--;
+          }
+        }
 
-				// Reset alarmHours
-				if(buttonYellowState && buttonYellowChangedState) {
-					alarmHours = 0;
-				}
+        // Reset alarmHours
+        if(buttonYellowState && buttonYellowChangedState) {
+          alarmHours = 0;
+        }
 
-				// Set cursor
-				lcd.setCursor(0, 0);
+        // Set cursor
+        lcd.setCursor(0, 0);
 
-				// Print alarmHours
-				printDigitsToLCD(alarmHours);
-			}
-		}
+        // Print alarmHours
+        printDigitsToLCD(alarmHours);
+      }
+    }
 
-		// Set alarmMinutes
-		if(!isAlarmMinutesSet) {
-			// Print instructions
-			lcd.setCursor(0, 1);
-			lcd.print("Set minutes");
-			lcd.setCursor(3, 0);
+    // Set alarmMinutes
+    if(!isAlarmMinutesSet) {
+      // Print instructions
+      lcd.setCursor(0, 1);
+      lcd.print("Set minutes");
+      lcd.setCursor(3, 0);
 
-			// Listen for user input
-			while(!isAlarmMinutesSet) {
-				// Update button states
-				updateButtonStates();
+      // Listen for user input
+      while(!isAlarmMinutesSet) {
+        // Update button states
+        updateButtonStates();
 
-				// Set alarmMinutes
-				if(buttonBlueState && buttonBlueChangedState) {
-					isAlarmMinutesSet = true;
-				}
+        // Set alarmMinutes
+        if(buttonBlueState && buttonBlueChangedState) {
+          isAlarmMinutesSet = true;
+        }
 
-				// Set alarmMinutes up
-				if(buttonGreenState && buttonGreenChangedState) {
-					if(alarmMinutes < 59) {
-						alarmMinutes++;
-					}
-				}
+        // Set alarmMinutes up
+        if(buttonGreenState && buttonGreenChangedState) {
+          if(alarmMinutes < 59) {
+            alarmMinutes++;
+          }
+        }
 
-				// Set alarmMinutes down
-				if(buttonRedState && buttonRedChangedState) {
-					if(alarmMinutes > 0) {
-						alarmMinutes--;
-					}
-				}
+        // Set alarmMinutes down
+        if(buttonRedState && buttonRedChangedState) {
+          if(alarmMinutes > 0) {
+            alarmMinutes--;
+          }
+        }
 
-				// Reset alarmMinutes
-				if(buttonYellowState && buttonYellowChangedState) {
-					alarmMinutes = 0;
-				}
+        // Reset alarmMinutes
+        if(buttonYellowState && buttonYellowChangedState) {
+          alarmMinutes = 0;
+        }
 
-				// Set cursor
-				lcd.setCursor(3, 0);
+        // Set cursor
+        lcd.setCursor(3, 0);
 
-				// Print alarmMinutes
-				printDigitsToLCD(alarmMinutes);
-			}
-		}
+        // Print alarmMinutes
+        printDigitsToLCD(alarmMinutes);
+      }
+    }
 
-		// Calculate alarmInSeconds
-		alarmInSeconds = ((alarmHours - timeHours) * 60 * 60) + ((alarmMinutes - timeMinutes) * 60);
+    // Calculate alarmInSeconds
+    alarmInSeconds = ((alarmHours - timeHours) * 60 * 60) + ((alarmMinutes - timeMinutes) * 60);
 
-		// Set alarms
-		if(alarmInSeconds >= 3600) {
-			if(alarmMinutes == 0) {
-				alarmHours--;
-				alarmMinutes = 30;
-			} else if(alarmMinutes > 30) {
-				alarmHours--;
-				alarmMinutes = -(alarmMinutes - 60);
-			} else {
-				alarmHours--;
-				alarmMinutes = 60 + (alarmMinutes - 30);
-			}
-		} else {
-			if(alarmMinutes % 2 == 0) {
-				alarmMinutes = (alarmMinutes / 2);
-			} else {
-				alarmMinutes = (alarmMinutes / 2);
-				alarmSeconds = 30;
-			}
-		}
+    // Set alarms
+    if(alarmInSeconds >= 3600) {
+      if(alarmMinutes == 0) {
+        alarmHours--;
+        alarmMinutes = 30;
+      } else if(alarmMinutes > 30) {
+        alarmHours--;
+        alarmMinutes = -(alarmMinutes - 60);
+      } else {
+        alarmHours--;
+        alarmMinutes = 60 + (alarmMinutes - 30);
+      }
+    } else {
+      if(alarmMinutes % 2 == 0) {
+        alarmMinutes = (alarmMinutes / 2);
+      } else {
+        alarmMinutes = (alarmMinutes / 2);
+        alarmSeconds = 30;
+      }
+    }
 
-		// Recalculate alarmInSeconds
-		alarmInSeconds = ((alarmHours - timeHours) * 60 * 60) + ((alarmMinutes - timeMinutes) * 60) + (alarmSeconds - timeSeconds);
+    // Recalculate alarmInSeconds
+    alarmInSeconds = ((alarmHours - timeHours) * 60 * 60) + ((alarmMinutes - timeMinutes) * 60) + (alarmSeconds - timeSeconds);
 
-		// Set repeating alarm
-		alarm = Alarm.alarmRepeat(alarmHours, alarmMinutes, alarmSeconds, initiateServo);
+    // Set repeating alarm
+    alarm = Alarm.alarmRepeat(alarmHours, alarmMinutes, alarmSeconds, initiateServo);
 
-		// Alarm is set and enabled
-		isAlarmSet = true;
-		isAlarmEnabled = true;
+    // Alarm is set and enabled
+    isAlarmSet = true;
+    isAlarmEnabled = true;
 
-		// Print confirmation
-		lcd.setCursor(0, 1);
-		lcd.print("                ");
-		lcd.setCursor(0, 1);
-		lcd.print("Alarm is set!");
+    // Print confirmation
+    lcd.setCursor(0, 1);
+    lcd.print("                ");
+    lcd.setCursor(0, 1);
+    lcd.print("Alarm is set!");
 
-		// Print alarm to console
-		Serial.print("> Alarm has been set: ");
-		printTimeToConsole(alarmHours, alarmMinutes, alarmSeconds);
+    // Print alarm to console
+    Serial.print("> Alarm has been set: ");
+    printTimeToConsole(alarmHours, alarmMinutes, alarmSeconds);
 
-		// Delay program enough to see message
-		timer.delay(1000);
+    // Delay program enough to see message
+    timer.delay(1000);
 
-		// Set numberOfSequences
-		setNumberOfSequences();
-	}
+    // Set numberOfSequences
+    setNumberOfSequences();
+  }
 }
 
 /**
 * Ask user to set the number of sequences to display during the game operation
 */
 void setNumberOfSequences() {
-	if(isAlarmSet && isAlarmEnabled) {
-		// Create timer
-		Timer timer;
+  if(isAlarmSet && isAlarmEnabled) {
+    // Create timer
+    Timer timer;
 
-		// Clear display
-		lcd.clear();
+    // Clear display
+    lcd.clear();
 
-		// Print instructions
-		lcd.print("SET LEVEL");
+    // Print instructions
+    lcd.print("SET LEVEL");
 
-		// Delay program enough to see message
-		timer.delay(1000);
+    // Delay program enough to see message
+    timer.delay(1000);
 
-		// Print instructions
-		lcd.clear();
-		printDigitsToLCD(numberOfSequences);
-		lcd.setCursor(0, 1);
-		lcd.print("Set level");
-		lcd.setCursor(0, 0);
+    // Print instructions
+    lcd.clear();
+    printDigitsToLCD(numberOfSequences);
+    lcd.setCursor(0, 1);
+    lcd.print("Set level");
+    lcd.setCursor(0, 0);
 
-		// Listen for user input
-		while(true) {
-			// Update button states
-			updateButtonStates();
+    // Listen for user input
+    while(true) {
+      // Update button states
+      updateButtonStates();
 
-			// Set numberOfSequences
-			if(buttonBlueState && buttonBlueChangedState) {
-				break;
-			}
+      // Set numberOfSequences
+      if(buttonBlueState && buttonBlueChangedState) {
+        break;
+      }
 
-			// Set numberOfSequences up
-			if(buttonGreenState && buttonGreenChangedState) {
-				if(numberOfSequences < 10) {
-					numberOfSequences++;
-				}
-			}
+      // Set numberOfSequences up
+      if(buttonGreenState && buttonGreenChangedState) {
+        if(numberOfSequences < 10) {
+          numberOfSequences++;
+        }
+      }
 
-			// Set numberOfSequences down
-			if(buttonRedState && buttonRedChangedState) {
-				if(numberOfSequences > 1) {
-					numberOfSequences--;
-				}
-			}
+      // Set numberOfSequences down
+      if(buttonRedState && buttonRedChangedState) {
+        if(numberOfSequences > 1) {
+          numberOfSequences--;
+        }
+      }
 
-			// Reset numberOfSequences
-			if(buttonYellowState && buttonYellowChangedState) {
-				numberOfSequences = 1;
-			}
+      // Reset numberOfSequences
+      if(buttonYellowState && buttonYellowChangedState) {
+        numberOfSequences = 1;
+      }
 
-			// Set cursor
-			lcd.setCursor(0, 0);
+      // Set cursor
+      lcd.setCursor(0, 0);
 
-			// Print numberOfSequences
-			printDigitsToLCD(numberOfSequences);
-		}
+      // Print numberOfSequences
+      printDigitsToLCD(numberOfSequences);
+    }
 
-		// Print confirmation
-		lcd.setCursor(0, 1);
-		lcd.print("                ");
-		lcd.setCursor(0, 1);
-		lcd.print("Level is set!");
+    // Print confirmation
+    lcd.setCursor(0, 1);
+    lcd.print("                ");
+    lcd.setCursor(0, 1);
+    lcd.print("Level is set!");
 
-		// Delay program enough to see message
-		timer.delay(1000);
-	}
+    // Delay program enough to see message
+    timer.delay(1000);
+  }
 }
 
 /**
 * Setup program
 */
 void setup() {
-	// Initiate LCD object
-	lcd.begin(16, 2);
+  // Initiate LCD object
+  lcd.begin(16, 2);
 
-	// Initiate MP3 object
-	mp3.begin(MP3_HARDWARE_SERIAL);
+  // Initiate MP3 object
+  mp3.begin(MP3_HARDWARE_SERIAL);
 
-	// Initiate servo object
-	servo.attach(PIN_SERVO);
-	servo.write(180);
+  // Initiate servo object
+  servo.attach(PIN_SERVO);
+  servo.write(180);
 
-	// Set pin modes
-	pinMode(PIN_BUTTON_BLUE, INPUT);
-	pinMode(PIN_BUTTON_GREEN, INPUT);
-	pinMode(PIN_BUTTON_RED, INPUT);
-	pinMode(PIN_BUTTON_YELLOW, INPUT);
-	pinMode(PIN_LED_BLUE, OUTPUT);
-	pinMode(PIN_LED_GREEN, OUTPUT);
-	pinMode(PIN_LED_RED, OUTPUT);
-	pinMode(PIN_LED_YELLOW, OUTPUT);
+  // Set pin modes
+  pinMode(PIN_BUTTON_BLUE, INPUT);
+  pinMode(PIN_BUTTON_GREEN, INPUT);
+  pinMode(PIN_BUTTON_RED, INPUT);
+  pinMode(PIN_BUTTON_YELLOW, INPUT);
+  pinMode(PIN_LED_BLUE, OUTPUT);
+  pinMode(PIN_LED_GREEN, OUTPUT);
+  pinMode(PIN_LED_RED, OUTPUT);
+  pinMode(PIN_LED_YELLOW, OUTPUT);
 
-	// Begin serial output
-	Serial.begin(9600);
-	Serial.println();
+  // Begin serial output
+  Serial.begin(9600);
+  Serial.println();
 }
 
 /**
 * Loop program
 */
 void loop() {
-	// Set time
-	if(!isTimeSet) {
-		setClockTime();
-	}
+  // Set time
+  if(!isTimeSet) {
+    setClockTime();
+  }
 
-	// Start clock
-	if(isTimeSet) {
-		// Create timer
-		Timer timer;
+  // Start clock
+  if(isTimeSet) {
+    // Create timer
+    Timer timer;
 
-		// Print current time
-		printCurrentTimeToLCD();
+    // Print current time
+    printCurrentTimeToLCD();
 
-		// Keep time
-		while(true) {
-			// Listen for user actions
-			listenForUserActions();
+    // Keep time
+    while(true) {
+      // Listen for user actions
+      listenForUserActions();
 
-			// Continue loop after one second
-			if(timer.check(1000)) {
-				// Delay alarm
-				if(isAlarmSet) {
-					Alarm.delay(0);
-				}
+      // Continue loop after one second
+      if(timer.check(1000)) {
+        // Delay alarm
+        if(isAlarmSet) {
+          Alarm.delay(0);
+        }
 
-				// Break loop
-				break;
-			}
-		}
-	}
+        // Break loop
+        break;
+      }
+    }
+  }
 }

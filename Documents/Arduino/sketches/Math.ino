@@ -4,7 +4,7 @@
 // Set number of math expressions to display
 const unsigned int NUMBER_OF_EXPRESSIONS = 10;
 
-// Set random noise pin (must be analog and unused) 
+// Set random noise pin (must be analog and unused)
 const unsigned int PIN_RANDOM = 0;
 
 /**
@@ -31,67 +31,67 @@ boolean done = false;
 * Setup program
 */
 void setup() {
-	// Start serial output
-	Serial.begin(9600);
+  // Start serial output
+  Serial.begin(9600);
 }
 
 /**
 * Run program
 */
 void loop() {
-	// Run program
-	if(!done) {
-		// Print expressions
-		for(int i = 0; i < NUMBER_OF_EXPRESSIONS; i++) {
-			// Create new random seed
-			randomSeed(analogRead(PIN_RANDOM));
+  // Run program
+  if(!done) {
+    // Print expressions
+    for(int i = 0; i < NUMBER_OF_EXPRESSIONS; i++) {
+      // Create new random seed
+      randomSeed(analogRead(PIN_RANDOM));
 
-			// Get random operator
-			char expressionOperator = operators[random(0, 3)];
+      // Get random operator
+      char expressionOperator = operators[random(0, 3)];
 
-			// Set max value for variables
-			variableMax = (expressionOperator == '+' || expressionOperator == '-') ? 100 : 10;
+      // Set max value for variables
+      variableMax = (expressionOperator == '+' || expressionOperator == '-') ? 100 : 10;
 
-			// Get random variables
-			variableA = random(variableMin, variableMax);
-			variableB = random(variableMin, variableMax);
+      // Get random variables
+      variableA = random(variableMin, variableMax);
+      variableB = random(variableMin, variableMax);
 
-			// Calculate answer
-			switch(expressionOperator) {
-				case '+':
-					expressionAnswer = variableA + variableB;
-					break;
-				case '-':
-					expressionAnswer = variableA - variableB;
-					break;
-				case '*':
-					expressionAnswer = variableA * variableB;
-					break;
-			}
+      // Calculate answer
+      switch(expressionOperator) {
+        case '+':
+          expressionAnswer = variableA + variableB;
+          break;
+        case '-':
+          expressionAnswer = variableA - variableB;
+          break;
+        case '*':
+          expressionAnswer = variableA * variableB;
+          break;
+      }
 
-			// Print expression number
-			Serial.print(i + 1);
-			Serial.print(": ");
+      // Print expression number
+      Serial.print(i + 1);
+      Serial.print(": ");
 
-			// Print variable A
-			Serial.print(variableA);
+      // Print variable A
+      Serial.print(variableA);
 
-			// Print operator
-			Serial.print(" ");
-			Serial.print(expressionOperator);
-			Serial.print(" ");
+      // Print operator
+      Serial.print(" ");
+      Serial.print(expressionOperator);
+      Serial.print(" ");
 
-			// Print variable B
-			Serial.print(variableB);
+      // Print variable B
+      Serial.print(variableB);
 
-			// Print answer
-			Serial.print(" = ");
-			Serial.println(expressionAnswer);
+      // Print answer
+      Serial.print(" = ");
+      Serial.println(expressionAnswer);
 
-			delay(1000);
-		}
+      delay(1000);
+    }
 
-		// Set boolean to true
-		done = true;
-	}
+    // Set boolean to true
+    done = true;
+  }
 }

@@ -2,27 +2,27 @@
 #include "Timer.h"
 
 Timer::Timer(void) {
-	set();
+  set();
 }
 
 void Timer::set(void) {
-	timer = millis();
+  timer = millis();
 }
 
 boolean Timer::check(int t) {
-	if((millis() - timer) >= t) {
-		return true;
-	}
+  if((millis() - timer) >= t) {
+    return true;
+  }
 
-	return false;
+  return false;
 }
 
 void Timer::delay(int t) {
-	set();
+  set();
 
-	while(true) {
-		if((millis() - timer) >= t) {
-			break;
-		}
-	}
+  while(true) {
+    if((millis() - timer) >= t) {
+      break;
+    }
+  }
 }
